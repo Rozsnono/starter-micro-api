@@ -1,4 +1,5 @@
-const path = require('path');
+const express = require('express')
+const app = express()
 const cors = require('cors');
 
 const dotenv = require("dotenv");
@@ -6,9 +7,8 @@ dotenv.config();
 
 const email = require('./emailSend');
 
+app.use(cors());
 
-const express = require('express')
-const app = express()
 app.all('/', (req, res) => {
     console.log("Just got a request!")
     res.send('Yo!')
