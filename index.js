@@ -1,23 +1,18 @@
-const path = require('path');
-const cors = require('cors');
-const express = require('express');
 
 const dotenv = require("dotenv");
 dotenv.config();
 
 const email = require('./emailSend');
 
-// const exception = require('./exceptions/exceptions');
+const express = require('express')
+const app = express()
 
 
-const app = express();
-
-const PORT = process.env.PORT || 5000;
-
-const buildPath = path.join(__dirname, '..', 'build');
-app.use(express.static(buildPath));
-app.use(express.json());
-app.use(cors());
+app.all('/', (req, res) => {
+    console.log("Just got a request!")
+    res.send('Yo!')
+})
+app.listen(process.env.PORT || 3000)
 
 app.post("/email", async (req, res) => {
 
@@ -27,12 +22,4 @@ app.post("/email", async (req, res) => {
   res.ok();
 })
 
-app.post("/", async (req, res) => {
-    res.send('Yo!')
-  })
-  
 
-
-app.listen(PORT, () => {
-  console.log(`server started on port ${PORT}`);
-});
