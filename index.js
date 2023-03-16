@@ -27,14 +27,11 @@ app.post("/email", async (req, res) => {
   res.ok();
 })
 
-
-app.get('/*', function (req, res) {
-  res.sendFile(path.join(__dirname, '../build/index.html'), function (err) {
-    if (err) {
-      res.status(500).send(err)
-    }
+app.post("/", async (req, res) => {
+    res.send('Yo!')
   })
-});
+  
+
 
 app.listen(PORT, () => {
   console.log(`server started on port ${PORT}`);
